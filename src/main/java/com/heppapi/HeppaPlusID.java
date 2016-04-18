@@ -29,18 +29,20 @@ public class HeppaPlusID {
     }
     
     @POST //PÄIVITÄ HEVONEN KANNASTA
+    @Produces(MediaType.APPLICATION_JSON)
     @Consumes("application/x-www-form-urlencoded")
     public String putHeppa(@PathParam("heppaid") String heppaId, MultivaluedMap<String, String> form) {
     	HevonenDAO hepo = new HevonenDAO();
     	String result = hepo.paivitaHeppa(heppaId, form);
- 	    return new ToJson().toJson(result);	
+    	return "{message:" + result +"}";
     }
  
     @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
     public String delHeppa(@PathParam("heppaid") @Pattern(regexp = "[0-100000]+", message = "The id must be a valid number") String heppaId) {
     	HevonenDAO hepo = new HevonenDAO();
     	String result = hepo.poistaHeppa(heppaId);
-    	return new ToJson().toJson(result);	
+    	return "{message:" + result +"}";	
     }
     
 }

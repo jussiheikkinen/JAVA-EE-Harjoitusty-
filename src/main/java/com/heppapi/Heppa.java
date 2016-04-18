@@ -32,16 +32,17 @@ public class Heppa {
 		Hevonen heppa = hepo.getHevonen(3);
 		return new ToJson().toJson(heppa);
 		}
-		return new ToJson().toJson("Unauthorized");     
+		return "{message: Unauthorized}";     
     }
 	
 	@POST //LISÄÄ UUSI HEVONEN KANTAAN
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes("application/x-www-form-urlencoded")
 	public String putHeppa(MultivaluedMap<String, String> form) {
 		
 		HevonenDAO hepo = new HevonenDAO();
 	    String result = hepo.uusiHevonen(form);
-	    return result;
+	    return "{message:" + result +"}";
 	}
 
 }

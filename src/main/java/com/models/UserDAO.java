@@ -29,7 +29,7 @@ public class UserDAO {
 			
 		}catch(Exception e){
 			e.printStackTrace();
-			return e.toString();
+			return "{status: 500}";
 		}
 		
 		mongo.SuljeTietokantayhteys();
@@ -62,19 +62,19 @@ public class UserDAO {
 
 	private static class Status{		
 		@SuppressWarnings("unused")
-		private Boolean status;		
+		private Boolean isAdmin;		
 		@SuppressWarnings("unused")
-		private String response;
+		private String apikey;
 		@SuppressWarnings("unused")
 		private String user;
 		@SuppressWarnings("unused")
-		private String succes;
+		private String status;
 		
-		public Status(Boolean status, String response, String user, String succes){
-			this.status = status;
-			this.response =  "Write this up: " + response;
+		public Status(Boolean isAdmin, String apikey, String user, String status){
+			this.isAdmin = isAdmin;
+			this.apikey =  "Write this up: " + apikey;
 			this.user = user;
-			this.succes = succes;
+			this.status = status;
 		}
 	}
 
